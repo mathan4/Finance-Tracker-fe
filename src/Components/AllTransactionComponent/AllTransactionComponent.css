@@ -1,0 +1,16 @@
+
+body{
+    background-color: rgb(246, 244, 244);
+}
+
+.transactions{
+    display: flex;
+    justify-content: center;
+ 
+}
+
+.transaction-list-holder{
+    padding: 10px;
+    width: 70%;
+}
+

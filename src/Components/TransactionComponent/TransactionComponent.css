@@ -1,0 +1,36 @@
+.transaction-detail-box{
+    height: 70px;
+    background-color: white;
+    margin-top: 10px;
+    padding: 20px 90px;
+    border-radius: 20px;
+    display: flex;
+    vertical-align: middle;
+    align-items:flex-start;
+    justify-content: space-between;
+}
+.sub-details{
+    display: flex;
+    gap: 10px;
+}
+.edit-delete-button{
+    display: flex;
+    gap: 8px;
+}
+.edit{
+    border: solid yellow 3px;
+    border-radius: 8px;
+    box-shadow: 2px;
+    color: black;
+    background-color: white;
+}
+.delete{
+    border: solid red 3px;
+    border-radius: 8px;
+    box-shadow: 2px;
+    color: black;
+    background-color: white;
+}
+.edit:hover,.delete:hover{
+    background-color: rgb(244, 244, 244);
+}
