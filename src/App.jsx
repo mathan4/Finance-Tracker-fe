@@ -3,6 +3,7 @@ import AddNewTransaction from './Components/AddNewTransaction/AddNewTransaction'
 import AllTransactionComponent from './Components/AllTransactionComponent/AllTransactionComponent'
 import './App.css'
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom'
+import DashboardComponent from './Components/DashboardComponent/DashboardComponent'
 
 const App = () => {
   return (
@@ -13,14 +14,14 @@ const App = () => {
               
             <nav className="menu">
                 <Link to="/" >Home</Link>
+                <Link to="/all" >View All Transactions</Link>
                 <Link to="/add" >Add Transactions</Link>
-                {/* <Link to="/cart" >Cart</Link> */}
             </nav>
             </div>
            <Routes>
-                 <Route exact path='/' element={<AllTransactionComponent/>}></Route>
+                 <Route exact path='/' element={<DashboardComponent/>}></Route>
                  <Route path='/add' element={<AddNewTransaction/>}></Route>
-                 {/* <Route path='/cart' element={<GetCartItemsComponent/>}></Route> */}
+                 <Route path='/all' element={<AllTransactionComponent/>}></Route>
           </Routes>
           </div>
        </BrowserRouter>

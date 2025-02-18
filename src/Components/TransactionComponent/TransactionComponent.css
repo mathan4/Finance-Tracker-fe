@@ -9,6 +9,11 @@
     align-items:flex-start;
     justify-content: space-between;
 }
+.transaction-amount-description{
+    display: flex;
+    gap: 8px;
+    flex-direction: column;
+}
 .sub-details{
     display: flex;
     gap: 10px;
@@ -28,9 +33,21 @@
     border: solid red 3px;
     border-radius: 8px;
     box-shadow: 2px;
+   background-color: red;
     color: black;
     background-color: white;
 }
 .edit:hover,.delete:hover{
     background-color: rgb(244, 244, 244);
 }
+
+@media (max-width: 768px) {
+    .transaction-detail-box{
+      padding: 1%;
+      font-size: small;
+      flex-direction: column;
+      gap:10px;
+      justify-content: space-around;
+      align-items: center;
+    }
+  }
