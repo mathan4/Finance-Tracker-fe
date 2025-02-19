@@ -42,12 +42,12 @@ const AddNewTransaction = () => {
         )
         .then((response) => {
           console.log("Response data:", response.data);
-        //   setTransactionAmount("");
-        //   setTransactionDescription("");
-        //   setTransactionDate("");
+          setTransactionAmount("");
+          setTransactionDescription("");
+          setTransactionDate("");
     
           
-        //   alert("Transaction added successfully!");
+          alert("Transaction added successfully!");
         })
         .catch((error) => {
           console.error("Error response:", error.response.data);

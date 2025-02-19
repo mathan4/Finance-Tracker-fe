@@ -23,19 +23,18 @@
     gap: 8px;
 }
 .edit{
-    border: solid yellow 3px;
+    border: solid rgb(255, 255, 169) 3px;
     border-radius: 8px;
     box-shadow: 2px;
     color: black;
-    background-color: white;
+    background-color: rgb(255, 255, 169);
 }
 .delete{
-    border: solid red 3px;
+    border: solid rgb(255, 167, 167) 3px;
     border-radius: 8px;
     box-shadow: 2px;
-   background-color: red;
     color: black;
-    background-color: white;
+    background-color: rgb(255, 167, 167);
 }
 .edit:hover,.delete:hover{
     background-color: rgb(244, 244, 244);

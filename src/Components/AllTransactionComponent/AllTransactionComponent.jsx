@@ -36,7 +36,7 @@ const AllTransactionComponent = () => {
         {transactionData &&
           transactionData.map((it, index) => (
             <div key={index}>
-              <TransactionComponent data={it} DeleteHandler={DeleteHandler}/>
+              <TransactionComponent data={it} DeleteHandler={DeleteHandler} getAllTransactions={getAllTransactions}/>
             </div>
           ))}
       </div>

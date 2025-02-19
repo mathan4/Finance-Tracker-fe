@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import './DashboardComponent.css'
 import TransactionComponent from '../TransactionComponent/TransactionComponent';
 
+
 const DashboardComponent = () => {
     const[transactionData,setTransactionData]=useState([]);
     const[total,setTotal]=useState(0);
@@ -20,6 +21,16 @@ const DashboardComponent = () => {
         getAllTransactions()
 
       },[])
+
+      const DeleteHandler=(id)=>{
+        try {
+           axios.delete(`http://localhost:3500/api/v1/financetracker/delete/${id}`);
+           setTransactionData(prevTransactions => prevTransactions.filter(transaction => transaction._id !== id))
+           getAllTransactions()
+        } catch (error) {
+           console.log(error.message);
+        }
+     }
 
 
       const calculateTotal = () => {
@@ -83,7 +94,7 @@ const DashboardComponent = () => {
         {transactionData &&
           transactionData.slice(0,3).map((it, index) => (
             <div key={index}>
-              <TransactionComponent data={it}/>
+              <TransactionComponent data={it} DeleteHandler={DeleteHandler}/>
             </div>
           ))}
       </div>
