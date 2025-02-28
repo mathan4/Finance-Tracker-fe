@@ -37,7 +37,7 @@ const AddNewTransaction = () => {
     try {
       axios
         .post(
-          "http://localhost:3500/api/v1/financetracker/add",
+          "https://finance-tracker-be.vercel.app/api/v1/financetracker/add",
           transactionData
         )
         .then((response) => {

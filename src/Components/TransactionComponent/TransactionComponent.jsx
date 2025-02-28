@@ -4,21 +4,19 @@ import axios from "axios";
 
 const TransactionComponent = (transactionDetails) => {
   const [edit, setEdit] = useState(false);
-  const id=transactionDetails.data._id;
+  const id = transactionDetails.data._id;
   const [transactionData, setTransactionData] = useState({
-      transactionAmount: transactionDetails.transactionAmount,
-      transactionDescription: transactionDetails.transactionDescription,
-      transactionDate: transactionDetails.transactionDate,
-    });
-  
-    const { transactionAmount, transactionDescription, transactionDate } =
-      transactionData;
-  
+    transactionAmount: transactionDetails.data.transactionAmount,
+    transactionDescription: transactionDetails.data.transactionDescription,
+    transactionDate: transactionDetails.data.transactionDate,
+  });
 
-  const EditHandler=()=>{
+  const { transactionAmount, transactionDescription, transactionDate } =
+    transactionData;
+
+  const EditHandler = () => {
     setEdit(true);
-    
-  }
+  };
   const transactionAmountHandler = (event) => {
     setTransactionData({
       ...transactionData,
@@ -39,70 +37,69 @@ const TransactionComponent = (transactionDetails) => {
     });
   };
 
-  const formSubmitHandler = () => {
+  const formSubmitHandler = async () => {
     try {
-      axios
-        .put(
-          `http://localhost:3500/api/v1/financetracker/edit/${id}`,
-          transactionData
-        )
-        .then((response) => {
-          console.log("Response data:", response.data);
-        
-          alert("Transaction edited successfully!");
-          setEdit(false);
-          transactionDetails.getAllTransactions()
-        })
-        .catch((error) => {
-          console.error("Error response:", error.response.data);
-        });
-
-     
+      await axios.put(
+        `https://finance-tracker-be.vercel.app/api/v1/financetracker/edit/${id}`,
+        transactionData
+      );
+      alert("Transaction edited successfully!");
+      setEdit(false);
+      transactionDetails.getAllTransactions();
     } catch (error) {
       console.log("Caught error:", error.message);
     }
   };
 
-
   return (
     <React.Fragment>
-        {edit?(<form onSubmit={formSubmitHandler}>
-        <div>
-          <label>TransactionAmount</label>
-          <input
-            type="number"
-            defaultValue={transactionDetails.data.transactionAmount}
-            value={transactionAmount}
-            onChange={transactionAmountHandler}
-          />
+      {edit ? (
+        <div className="container">
+          <div className="form-group">
+            <label>Transaction Amount</label>
+            <input
+              type="number"
+              value={transactionAmount}
+              onChange={transactionAmountHandler}
+              className="form-input"
+            />
+          </div>
+
+          <div className="form-group">
+            <label>Transaction Description</label>
+            <select
+              value={transactionDescription}
+              onChange={transactionDescriptionHandler}
+              required
+              className="form-select"
+            >
+              <option value="">Select Description</option>
+              <option value="food">Food</option>
+              <option value="entertainment">Entertainment</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div className="form-group">
+            <label>Transaction Date</label>
+            <input
+              type="date"
+              value={
+                new Date(transactionDetails.data.transactionDate)
+                  .toISOString()
+                  .split("T")[0]
+              }
+              onChange={transactionDateHandler}
+              className="form-input"
+            />
+          </div>
+
+          <button onClick={formSubmitHandler} className="form-button">
+            Edit
+          </button>
         </div>
-        <div>
-          <label>Transaction Description</label>
-          <select
-           defaultValue={transactionDetails.data.transactionDescription}
-            value={transactionDescription}
-            onChange={transactionDescriptionHandler}
-            required
-          >
-            <option value="">Select Description</option>
-            <option value="food">Food</option>
-            <option value="entertainment">Entertainment</option>
-            <option value="other">Other</option>
-          </select>
-        </div>
-        <div>
-          <label>Transaction Date</label>
-          <input
-            type="date"
-            defaultValue={transactionDetails.data.transactionDate}
-            value={transactionDate}
-            onChange={transactionDateHandler}
-          />
-        </div>
-        <button type="submit">Edit</button>
-      </form>)
-      :
-      (<div className="transaction-detail-box">
+      ) : (
+        <div className="transaction-detail-box">
           <div className="transaction-amount-description">
             <div>{transactionDetails.data.transactionAmount}</div>
             <div className="sub-details">
@@ -117,10 +114,20 @@ const TransactionComponent = (transactionDetails) => {
             </div>
           </div>
           <div className="edit-delete-button">
-            <button onClick={EditHandler} className="edit">Edit</button>
-            <button onClick={()=>{transactionDetails.DeleteHandler(transactionDetails.data._id)}} className="delete">delete</button>
+            <button onClick={EditHandler} className="edit">
+              Edit
+            </button>
+            <button
+              onClick={() => {
+                transactionDetails.DeleteHandler(transactionDetails.data._id);
+              }}
+              className="delete"
+            >
+              delete
+            </button>
           </div>
-        </div>)}
+        </div>
+      )}
     </React.Fragment>
   );
 };

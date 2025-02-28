@@ -8,7 +8,7 @@ const AllTransactionComponent = () => {
 
   const getAllTransactions = async () => {
     const response = await axios.get(
-      "http://localhost:3500/api/v1/financetracker/"
+      "https://finance-tracker-be.vercel.app/api/v1/financetracker/"
     );
     setTransactionData(response.data);
     console.log(response.data);
@@ -17,7 +17,7 @@ const AllTransactionComponent = () => {
     
     const DeleteHandler=(id)=>{
            try {
-              axios.delete(`http://localhost:3500/api/v1/financetracker/delete/${id}`);
+              axios.delete(`https://finance-tracker-be.vercel.app/api/v1/financetracker/delete/${id}`);
               setTransactionData(prevTransactions => prevTransactions.filter(transaction => transaction._id !== id))
               getAllTransactions()
            } catch (error) {

@@ -1,6 +1,6 @@
 body{
   box-sizing: border-box;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 .navbar {
   background-color: rgb(246, 244, 244);
@@ -13,14 +13,17 @@ body{
   position: relative;
   width: 100vw;
 }
-
+.logo-container{
+  display: flex;
+  gap: 10px;
+}
+.logo-image {
+  width: 80px; 
+  height: 80px;
+  border-radius: 50%;
+}
 .navbar .logo {
   height: 50px;
-}
-
-.navbar .logo img {
-    max-height: 100%;
-    width: auto;
 }
 
 .navbar .menu {
@@ -46,15 +49,25 @@ body{
   color: #007bff;
 }
 
+@media (max-width: 640px) {
+  .logo-image {
+    width: 40px; 
+    height: 40px;
+  }
+  .navbar .menu {
+    flex-direction: column;
+    margin-top: 10px;
+  }
+}
+
 @media (max-width: 768px) {
   .navbar {
-    flex-direction: column;
     align-items: flex-start;
     padding: 10px;
   }
 
   .navbar .menu {
-    flex-direction: column;
+   
     margin-top: 10px;
   }
 
