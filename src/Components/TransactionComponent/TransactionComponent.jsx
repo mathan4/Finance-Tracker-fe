@@ -54,49 +54,46 @@ const TransactionComponent = (transactionDetails) => {
   return (
     <React.Fragment>
       {edit ? (
-        <div className="container">
-          <div className="form-group">
-            <label>Transaction Amount</label>
+        <div className="transaction-detail-box">
+          <div className="transaction-amount-description">
             <input
               type="number"
               value={transactionAmount}
               onChange={transactionAmountHandler}
-              className="form-input"
+              className="edit-input"
             />
+            <div className="sub-details">
+              <select
+                value={transactionDescription}
+                onChange={transactionDescriptionHandler}
+                required
+                className="edit-select"
+              >
+                <option value="">Select Description</option>
+                <option value="food">Food</option>
+                <option value="entertainment">Entertainment</option>
+                <option value="other">Other</option>
+              </select>
+              <input
+                type="date"
+                value={
+                  new Date(transactionDetails.data.transactionDate)
+                    .toISOString()
+                    .split("T")[0]
+                }
+                onChange={transactionDateHandler}
+                className="edit-date"
+              />
+            </div>
           </div>
-
-          <div className="form-group">
-            <label>Transaction Description</label>
-            <select
-              value={transactionDescription}
-              onChange={transactionDescriptionHandler}
-              required
-              className="form-select"
-            >
-              <option value="">Select Description</option>
-              <option value="food">Food</option>
-              <option value="entertainment">Entertainment</option>
-              <option value="other">Other</option>
-            </select>
+          <div className="edit-save-button">
+            <button onClick={formSubmitHandler} className="save">
+              Save
+            </button>
+            <button onClick={() => setEdit(false)} className="cancel">
+              Cancel
+            </button>
           </div>
-
-          <div className="form-group">
-            <label>Transaction Date</label>
-            <input
-              type="date"
-              value={
-                new Date(transactionDetails.data.transactionDate)
-                  .toISOString()
-                  .split("T")[0]
-              }
-              onChange={transactionDateHandler}
-              className="form-input"
-            />
-          </div>
-
-          <button onClick={formSubmitHandler} className="form-button">
-            Edit
-          </button>
         </div>
       ) : (
         <div className="transaction-detail-box">
@@ -105,11 +102,9 @@ const TransactionComponent = (transactionDetails) => {
             <div className="sub-details">
               <div>{transactionDetails.data.transactionDescription}</div>
               <div className="transaction-date">
-                {
-                  new Date(transactionDetails.data.transactionDate)
-                    .toISOString()
-                    .split("T")[0]
-                }
+                {new Date(transactionDetails.data.transactionDate)
+                  .toISOString()
+                  .split("T")[0]}
               </div>
             </div>
           </div>

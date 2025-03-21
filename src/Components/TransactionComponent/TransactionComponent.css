@@ -1,121 +1,174 @@
-.transaction-detail-box{
-    height: 70px;
-    background-color: white;
-    margin-top: 10px;
-    padding: 20px 90px;
-    border-radius: 20px;
-    display: flex;
-    vertical-align: middle;
-    align-items:flex-start;
-    justify-content: space-between;
+.transaction-detail-box {
+  height: auto; /* Allow height to adjust based on content */
+  background-color: white;
+  margin-top: 10px;
+  padding: 20px 90px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center; /* Align items vertically in the center */
+  justify-content: space-between;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  flex-wrap: wrap; /* Allow wrapping for edit mode */
 }
-.transaction-amount-description{
-    display: flex;
-    gap: 8px;
-    flex-direction: column;
+
+.transaction-detail-box:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
 }
-.sub-details{
-    display: flex;
-    gap: 10px;
+
+.transaction-amount-description {
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
 }
-.edit-delete-button{
-    display: flex;
-    gap: 8px;
+
+.sub-details {
+  display: flex;
+  gap: 10px;
 }
-.edit{
-    border: solid rgb(255, 255, 169) 3px;
-    border-radius: 8px;
-    box-shadow: 2px;
-    color: black;
-    background-color: rgb(255, 255, 169);
+
+.edit-delete-button,
+.edit-save-button {
+  display: flex;
+  gap: 8px;
 }
-.delete{
-    border: solid rgb(255, 167, 167) 3px;
-    border-radius: 8px;
-    box-shadow: 2px;
-    color: black;
-    background-color: rgb(255, 167, 167);
+
+.edit,
+.save {
+  border: solid rgb(255, 255, 169) 3px;
+  border-radius: 8px;
+  box-shadow: 2px;
+  color: black;
+  background-color: rgb(255, 255, 169);
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
-.edit:hover{
-    background-color: yellow;
+
+.delete,
+.cancel {
+  border: solid rgb(255, 167, 167) 3px;
+  border-radius: 8px;
+  box-shadow: 2px;
+  color: black;
+  background-color: rgb(255, 167, 167);
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
-.delete:hover{
-    background-color: red;
-    border: red;
+
+.edit:hover,
+.save:hover {
+  background-color: yellow;
+  transform: scale(1.05);
 }
+
+.delete:hover,
+.cancel:hover {
+  background-color: red;
+  color: white;
+  transform: scale(1.05);
+}
+
 .container {
-    background-color: #f7fafc;
-    border: 2px solid #d1d5db;
-    padding: 24px;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    max-width: 32rem;
-    margin: 0 auto;
-  }
-  
-  .form-group {
-    margin-bottom: 16px;
-  }
-  
-  .form-group label {
-    display: block;
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: #4a5568;
-    margin-bottom: 8px;
-  }
-  
-  .form-input,
-  .form-select {
-    width: 100%;
-    padding: 8px 12px;
-    border: 1px solid #d1d5db;
-    border-radius: 6px;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-    outline: none;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .form-input:focus,
-  .form-select:focus {
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
-  }
-  
-  .form-button {
-    width: 100%;
-    background-color: #3b82f6;
-    color: white;
-    font-weight: 500;
-    padding: 8px 16px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .form-button:hover {
-    background-color: #2563eb;
-  }
-  
-  .form-button:focus {
-    outline: none;
-    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
-  }
-  
-  .form-button:focus-visible {
-    background-color: #3b82f6;
-  }
-  
+  background-color: #f7fafc;
+  border: 2px solid #d1d5db;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 32rem;
+  margin: 0 auto;
+  transition: box-shadow 0.3s ease;
+}
+
+.container:hover {
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #4a5568;
+  margin-bottom: 8px;
+}
+
+.form-input,
+.form-select,
+.edit-input,
+.edit-select,
+.edit-date {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  box-sizing: border-box; /* Include padding and border in element's total width and height */
+}
+
+.edit-input,
+.edit-select,
+.edit-date {
+  margin-bottom: 8px; /* Add margin for spacing */
+}
+
+.form-input:focus,
+.form-select:focus,
+.edit-input:focus,
+.edit-select:focus,
+.edit-date:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+}
+
+.form-button {
+  width: 100%;
+  background-color: #3b82f6;
+  color: white;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.form-button:hover {
+  background-color: #2563eb;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(59, 130, 246, 0.3);
+}
+
+.form-button:active {
+  transform: translateY(1px);
+}
+
+.form-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+}
+
+.form-button:focus-visible {
+  background-color: #3b82f6;
+}
 
 @media (max-width: 768px) {
-    .transaction-detail-box{
-      padding: 1%;
-      font-size: small;
-      flex-direction: column;
-      gap:10px;
-      justify-content: space-around;
-      align-items: center;
-    }
+  .transaction-detail-box {
+    padding: 1%;
+    font-size: small;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: space-around;
+    align-items: center;
+    height: auto;
+    min-height: 70px;
   }
+}
